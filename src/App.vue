@@ -6,8 +6,12 @@
           :refreshCustomersList="refreshCustomersList"
           :showCreateDialog="showCreateDialog"
         />
-        <CustomersList :customers="customers" />
-        <CreateDialog :dialog="dialog" :hideCreateDialog="hideCreateDialog" />
+        <CustomersList :customers="customers" :refreshCustomersList="refreshCustomersList" />
+        <CreateDialog
+          :dialog="dialog"
+          :hideCreateDialog="hideCreateDialog"
+          :refreshCustomersList="refreshCustomersList"
+        />
         <v-snackbar v-model="snackbar">
           The customers list has been refreshed
           <v-btn color="pink" text @click="snackbar = false">Close</v-btn>

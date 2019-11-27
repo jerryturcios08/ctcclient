@@ -18,7 +18,7 @@
       </v-list-item-content>
       <v-list-item-action>
         <v-btn icon>
-          <v-icon color="red">delete</v-icon>
+          <v-icon color="red" @click="deleteCustomer(customer.id)">delete</v-icon>
         </v-btn>
       </v-list-item-action>
     </v-list-item>
@@ -26,6 +26,10 @@
 </template>
 
 <script>
+import axios from "axios";
+
+import apiUrl from "@/api/config";
+
 export default {
   name: "CustomersList",
   props: {
@@ -39,6 +43,20 @@ export default {
         phoneNumber: "",
         socialSecurity: ""
       })
+    },
+    refreshCustomersList: Function
+  },
+  methods: {
+    deleteCustomer(id) {
+      axios
+        .delete(`${apiUrl}/api/customers/${id}`)
+        .then(() => {
+          this.$props.refreshCustomersList();
+        })
+        .catch(error => {
+          // eslint-disable-next-line no-console
+          console.log(error);
+        });
     }
   }
 };

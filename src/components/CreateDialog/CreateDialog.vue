@@ -34,7 +34,8 @@ export default {
   name: "CreateDialog",
   props: {
     dialog: Boolean,
-    hideCreateDialog: Function
+    hideCreateDialog: Function,
+    refreshCustomersList: Function
   },
   data() {
     return {
@@ -64,7 +65,6 @@ export default {
         }
       };
 
-      // Validates the form based on what has been entered in each field
       if (this.valid) {
         axios
           .post(
@@ -80,7 +80,8 @@ export default {
           )
           .then(() => {
             // Closes the dialog if the request succeeds
-            this.props.hideCreateDialog();
+            this.$props.hideCreateDialog();
+            this.$props.refreshCustomersList();
           })
           .catch(error => {
             // eslint-disable-next-line no-console
