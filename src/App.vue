@@ -76,9 +76,3 @@ export default {
   }
 };
 </script>
-
-<style scoped>
-#product-name {
-  color: rgb(233, 232, 232);
-}
-</style>

@@ -17,7 +17,7 @@
         </v-form>
       </v-card-text>
       <v-card-actions>
-        <v-btn text color="primary" @click="hideCreateDialog">Cancel</v-btn>
+        <v-btn text color="primary" @click="closeDialog">Cancel</v-btn>
         <v-spacer></v-spacer>
         <v-btn text color="primary" @click="createNewCustomer">Submit</v-btn>
       </v-card-actions>
@@ -79,15 +79,18 @@ export default {
             config
           )
           .then(() => {
-            // Closes the dialog if the request succeeds
-            this.$props.hideCreateDialog();
             this.$props.refreshCustomersList();
+            this.closeDialog();
           })
           .catch(error => {
             // eslint-disable-next-line no-console
             console.log(error);
           });
       }
+    },
+    closeDialog() {
+      this.$refs.form.reset();
+      this.$props.hideCreateDialog();
     }
   }
 };

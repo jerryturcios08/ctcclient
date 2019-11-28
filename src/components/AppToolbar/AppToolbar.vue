@@ -10,7 +10,7 @@
       <v-icon>refresh</v-icon>
     </v-btn>
     <template v-slot:extension>
-      <v-btn fab color="cyan accent-2" bottom left absolute @click="showCreateDialog">
+      <v-btn color="cyan accent-2" bottom left absolute @click="showCreateDialog">
         <v-icon>mdi-plus</v-icon>
       </v-btn>
     </template>
