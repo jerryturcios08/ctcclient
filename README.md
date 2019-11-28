@@ -1,4 +1,4 @@
-# ctc-client
+# Customer Manager
 
 ## Project setup
 ```
