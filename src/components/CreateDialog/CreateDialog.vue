@@ -27,6 +27,7 @@
 
 <script>
 import axios from "axios";
+import querystring from "querystring";
 
 import apiUrl from "@/api/config";
 
@@ -59,25 +60,29 @@ export default {
   },
   methods: {
     createNewCustomer() {
+      // Configures the headers for the POST request
       const config = {
         headers: {
           "Content-Type": "application/x-www-form-urlencoded"
         }
       };
 
+      // Creates an object that holds the data for the request
+      const data = {
+        firstName: this.firstName,
+        lastName: this.lastName,
+        email: this.email,
+        phoneNumber: this.phoneNumber,
+        socialSecurity: this.socialSecurity
+      };
+
+      // Converts the data using a strinfigy function from querystring
+      const params = querystring.stringify(data);
+
+      // Sends a POST request if the data is valid
       if (this.valid) {
         axios
-          .post(
-            `${apiUrl}/api/customers`,
-            {
-              firstName: this.firstName,
-              lastName: this.lastName,
-              email: this.email,
-              phoneNumber: this.phoneNumber,
-              socialSecurity: this.socialSecurity
-            },
-            config
-          )
+          .post(`${apiUrl}/api/customers`, params, config)
           .then(() => {
             this.$props.refreshCustomersList();
             this.closeDialog();
